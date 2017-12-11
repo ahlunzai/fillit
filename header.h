@@ -6,7 +6,7 @@
 /*   By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 23:53:11 by gsysaath          #+#    #+#             */
-/*   Updated: 2017/12/11 05:53:48 by gsysaath         ###   ########.fr       */
+/*   Updated: 2017/12/11 08:35:59 by gsysaath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct			s_list2
 	int			i;
 }						t_grillelist;
 
-int						diesepoint(char *str, int i, int k, int l);
+void					free_liste(t_tetrislist *list);
+int						diesepoint(char *str, int i, int k);
 int						verification(char *str);
 int						taillemini(char *buf);
 int						nbrederet(char *str);

@@ -6,7 +6,7 @@
 /*   By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:32:52 by gsysaath          #+#    #+#             */
-/*   Updated: 2017/12/11 06:26:21 by gsysaath         ###   ########.fr       */
+/*   Updated: 2017/12/11 08:40:32 by gsysaath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ void						supprime_piece(t_grillelist *grille,
 t_grillelist				*placepieces(t_grillelist *grille,
 		t_tetrislist *tetris, int x, int y)
 {
-	t_tetrislist *pointer;
-
 	if (tetris != NULL)
 	{
 		if (libre(grille, tetris, x, y) == 1)
@@ -130,15 +128,10 @@ t_grillelist				*placepieces(t_grillelist *grille,
 		}
 		while (tetris->previous != NULL)
 			tetris = tetris->previous;
-		free(grille->map);
+		free(grille);
 		return (placepieces(creationtableau(grille->lenline + 1),
 					tetris, 0, 0));
 	}
-	while (tetris->previous != NULL)
-	{
-		pointer = tetris->previous;
-		free(tetris);
-		tetris = pointer;
-	}
+	free_liste(tetris);
 	return (grille);
 }

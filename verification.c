@@ -6,7 +6,7 @@
 /*   By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 01:43:34 by gsysaath          #+#    #+#             */
-/*   Updated: 2017/12/11 06:09:28 by gsysaath         ###   ########.fr       */
+/*   Updated: 2017/12/11 09:31:46 by gsysaath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,32 @@
 #include "libft.h"
 #include "header.h"
 
-int		diesepoint(char *str, int i, int k, int l)
+int		diesepoint(char *str, int i, int k)
 {
 	while (str[i] && i < 20)
 	{
 		while (str[i] && (i + 1) % 5 != 0)
 		{
-			if ((l > 4 && k != 4))
-				return (1);
 			if (str[i] == '#' && ((str[i + 1] && str[i + 1] == '#') || (str[i +
-5] && str[i + 5] == '#') || (str[i - 1] && str[i - 1] == '#') || (str[i - 5] &&
-			str[i - 5] == '#')))
-			{
-				l = 0;
-				i++;
+5] && str[i + 5] == '#')))
 				k++;
-			}
-			else if (str[i++] == '.')
-				l++;
+			if (str[i] == '.' || str[i] == '#')
+				i++;
 			else
 				return (1);
 		}
 		if (str[i] != '\n')
 			return (1);
 		i++;
-		l++;
 	}
-	return ((k == 4) ? 0 : 1);
+	return ((k == 3 || k == 4) ? 0 : 1);
 }
 
 int		verification(char *str)
 {
 	while (*str)
 	{
-		if (diesepoint(str, 0, 0, -16) == 0)
+		if (diesepoint(str, 0, 0) == 0)
 		{
 			str = str + 19;
 			if (str[0] == '\n' && str[1] == '\0')

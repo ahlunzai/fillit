@@ -6,13 +6,13 @@
 #    By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 00:51:14 by gsysaath          #+#    #+#              #
-#    Updated: 2017/12/11 00:56:55 by gsysaath         ###   ########.fr        #
+#    Updated: 2017/12/11 08:38:53 by gsysaath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GG = gcc
 
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror ##-O1 -g -fsanitize=address -fno-omit-frame-pointer -fsanitize-address-use-after-scope
 
 NAME = fillit
 
@@ -23,6 +23,7 @@ SRC = main.c \
 	  display.c \
 	  ft_putchar.c \
 	  ft_putstr.c \
+	  deletemalloc.c \
 
 HEAD = libft.h \
 	   header.h \
