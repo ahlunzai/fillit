@@ -6,14 +6,14 @@
 /*   By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:02:18 by gsysaath          #+#    #+#             */
-/*   Updated: 2017/12/07 10:59:55 by gsysaath         ###   ########.fr       */
+/*   Updated: 2017/12/09 02:19:40 by gsysaath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "header.h"
 
-int		nbrederet(char *str)
+int					nbrederet(char *str)
 {
 	int		i;
 
@@ -24,17 +24,17 @@ int		nbrederet(char *str)
 			i++;
 		str++;
 	}
-	return i;
+	return (i);
 }
 
-char **tableaupieces(char *str)
+char				**tableaupieces(char *str)
 {
 	char	**tab;
 	int		i;
 	int		j;
 
 	i = 0;
-	if(!(tab = (char **)malloc(sizeof(char *) * (nbrederet(str) + 1))))
+	if (!(tab = (char **)malloc(sizeof(char *) * (nbrederet(str) + 1))))
 		return (NULL);
 	while (*str)
 	{
@@ -53,16 +53,16 @@ char **tableaupieces(char *str)
 	return (tab);
 }
 
-pieces_list		*ft_construction(char **tab)
+t_tetrislist		*ft_construction(char **tab)
 {
-	int i;
-	int j;
-	int k;
-	pieces_list *list;
-	pieces_list *save;
-	pieces_list *tmp;
-	
-	if(!(list = (pieces_list *)malloc(sizeof(pieces_list))))
+	int				i;
+	int				j;
+	int				k;
+	t_tetrislist	*list;
+	t_tetrislist	*save;
+	t_tetrislist	*tmp;
+
+	if (!(list = (t_tetrislist *)malloc(sizeof(t_tetrislist))))
 		return (NULL);
 	list->previous = NULL;
 	list->next = NULL;
@@ -94,7 +94,7 @@ pieces_list		*ft_construction(char **tab)
 		{
 			i++;
 			tmp = list;
-			if(!(list->next = (pieces_list *)malloc(sizeof(pieces_list))))
+			if (!(list->next = (t_tetrislist *)malloc(sizeof(t_tetrislist))))
 				return (NULL);
 			list = list->next;
 			list->next = NULL;
