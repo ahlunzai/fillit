@@ -6,7 +6,7 @@
 #    By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 00:51:14 by gsysaath          #+#    #+#              #
-#    Updated: 2017/12/11 08:38:53 by gsysaath         ###   ########.fr        #
+#    Updated: 2017/12/14 00:21:47 by gsysaath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = main.c \
 	  ft_putchar.c \
 	  ft_putstr.c \
 	  deletemalloc.c \
+	  ft_puterror.c \
 
 HEAD = libft.h \
 	   header.h \

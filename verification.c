@@ -6,7 +6,7 @@
 /*   By: gsysaath <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 01:43:34 by gsysaath          #+#    #+#             */
-/*   Updated: 2017/12/11 09:31:46 by gsysaath         ###   ########.fr       */
+/*   Updated: 2017/12/14 01:14:28 by gsysaath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,23 @@
 #include "libft.h"
 #include "header.h"
 
-int		diesepoint(char *str, int i, int k)
+int		diesepoint(char *str, int i, int k, int l)
 {
 	while (str[i] && i < 20)
 	{
 		while (str[i] && (i + 1) % 5 != 0)
 		{
 			if (str[i] == '#' && ((str[i + 1] && str[i + 1] == '#') || (str[i +
-5] && str[i + 5] == '#')))
+5] && str[i + 5] == '#') || (str[i - 1] && str[i - 1] == '#') || (str[i - 5] &&
+str[i - 5] && str[i - 5] == '#')))
 				k++;
+			if (str[i] == '#' && ((str[i + 1] && str[i - 1] && str[i + 1] ==
+'#' && str[i - 1] == '#') || (str[i + 1] && str[i + 5] && str[i + 1] == '#' &&
+str[i + 5] == '#') || (str[i + 1] && str[i - 5] && str[i + 1] == '#' && str[i -
+5] == '#') || (str[i - 5] && str[i + 1] && str[i - 5] == '#' && str[i + 1] ==
+'#') || (str[i + 1] && str[i + 5] && str[i + 1] == '#' && str[i + 5] == '#') ||
+(str[i - 5] && str[i + 5] && str[i - 5] == '#' && str[i + 5] == '#')))
+				l++;
 			if (str[i] == '.' || str[i] == '#')
 				i++;
 			else
@@ -39,14 +47,14 @@ int		diesepoint(char *str, int i, int k)
 			return (1);
 		i++;
 	}
-	return ((k == 3 || k == 4) ? 0 : 1);
+	return (((k == 4) && l > 0) ? 0 : 1);
 }
 
 int		verification(char *str)
 {
 	while (*str)
 	{
-		if (diesepoint(str, 0, 0) == 0)
+		if (diesepoint(str, 0, 0, 0) == 0)
 		{
 			str = str + 19;
 			if (str[0] == '\n' && str[1] == '\0')
