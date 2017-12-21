@@ -25,6 +25,7 @@ SRC = main.c \
 	  ft_putstr.c \
 	  deletemalloc.c \
 	  ft_puterror.c \
+	  tableaupieces.c \
 
 HEAD = libft.h \
 	   header.h \
