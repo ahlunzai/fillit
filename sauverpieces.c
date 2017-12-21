@@ -53,53 +53,64 @@ char				**tableaupieces(char *str)
 	return (tab);
 }
 
-t_tetrislist		*ft_construction(char **tab)
+t_tetrislist		*initialisationlist(t_tetrislist *list)
 {
-	int				i;
-	int				j;
-	int				k;
-	t_tetrislist	*list;
-	t_tetrislist	*save;
-	t_tetrislist	*tmp;
-
-	if (!(list = (t_tetrislist *)malloc(sizeof(t_tetrislist))))
-		return (NULL);
 	list->previous = NULL;
 	list->next = NULL;
-	save = list;
-	i = 0;
-	while (tab[i] != 0)
+	return (list);
+}
+
+t_tetrislist		*passagenext(t_tetrislist *list, t_grillelist *var)
+{
+	t_tetrislist	*tmp;
+
+	tmp = list;
+	if (!(list->next = (t_tetrislist *)malloc(sizeof(t_tetrislist))))
+		return (NULL);
+	list = list->next;
+	list->next = NULL;
+	list->previous = tmp;
+	var->i++;
+	return (list);
+}
+
+void				savexy(char **tab, t_tetrislist *list, t_grillelist *var)
+{
+	if (tab[var->i][var->j] && tab[var->i][var->j] == '#')
 	{
-		k = 0;
-		while ((i + 1) % 5 != 0 && tab[i] != 0)
+		if (var->k == 0)
 		{
-			j = -1;
-			while (++j < 4)
-			{
-				if (tab[i][j] && tab[i][j] == '#')
-				{
-					if (k == 0)
-					{
-						list->shiftx = i;
-						list->shifty = j;
-					}
-					list->tab[k][0] = i - list->shiftx;
-					list->tab[k][1] = j - list->shifty;
-					k++;
-				}
-			}
-			i++;
+			list->shiftx = var->i;
+			list->shifty = var->j;
 		}
-		if (tab[i] != 0 && (i + 1) % 5 == 0)
+		list->tab[var->k][0] = var->i - list->shiftx;
+		list->tab[var->k][1] = var->j - list->shifty;
+		var->k++;
+	}
+}
+
+t_tetrislist		*ft_construction(char **tab, t_grillelist *var)
+{
+	t_tetrislist	*list;
+	t_tetrislist	*save;
+
+	if(!(list = (t_tetrislist *)malloc(sizeof(t_tetrislist))))
+		return (NULL);
+	list = initialisationlist(list);
+	save = list;
+	var->i = 0;
+	while (tab[var->i] != 0)
+	{
+		var->k = 0;
+		while ((var->i + 1) % 5 != 0 && tab[var->i] != 0)
 		{
-			i++;
-			tmp = list;
-			if (!(list->next = (t_tetrislist *)malloc(sizeof(t_tetrislist))))
-				return (NULL);
-			list = list->next;
-			list->next = NULL;
-			list->previous = tmp;
+			var->j = -1;
+			while (++var->j < 4)
+				savexy(tab, list, var);
+			var->i++;
 		}
+		if (tab[var->i] != 0 && (var->i + 1) % 5 == 0)
+			list = passagenext(list, var);
 	}
 	return (save);
 }

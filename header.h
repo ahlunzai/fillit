@@ -25,8 +25,6 @@ typedef struct			s_list3
 	int					shifty;
 	struct s_list3		*next;
 	struct s_list3		*previous;
-	struct s_list3		*tmp;
-	struct s_list3		*save;
 }						t_tetrislist;
 
 typedef struct			s_list2
@@ -36,6 +34,8 @@ typedef struct			s_list2
 	int			y;
 	int			lenline;
 	int			i;
+	int			j;
+	int			k;
 }						t_grillelist;
 
 int						ft_puterror(void);
@@ -49,6 +49,6 @@ t_grillelist			*creationtableau(int size);
 t_grillelist			*placepieces(t_grillelist *grille, t_tetrislist *list,
 									int x, int y);
 void					affichagelist(t_tetrislist **list);
-t_tetrislist			*ft_construction(char **tab);
+t_tetrislist			*ft_construction(char **tab, t_grillelist *var);
 char					**tableaupieces(char *str);
 #endif

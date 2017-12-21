@@ -26,7 +26,10 @@ int		main(int ac, char **av)
 	char			buf[2048];
 	int				size;
 	t_tetrislist	*list;
+	t_grillelist	*var;
 
+	if (!(var = (t_grillelist *)malloc(sizeof(t_grillelist))))
+		return (-1);
 	list = (t_tetrislist *)malloc(sizeof(t_tetrislist));
 	if (ac != 2)
 		return (write(1, "usage: fillit source_file", 26));
@@ -38,7 +41,7 @@ int		main(int ac, char **av)
 	if (*buf == 0 || verification(buf) == 1)
 		ft_puterror();
 	sorttab(placepieces(creationtableau(taillemini(buf)),
-				ft_construction(tableaupieces(buf)), 0, 0));
+				ft_construction(tableaupieces(buf), var), 0, 0));
 	close(fd);
 	return (0);
 }
